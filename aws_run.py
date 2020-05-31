@@ -1,5 +1,6 @@
 import os
 from auth.aws_login import aws_login
+from services.services import aws_services
 from services.ec2.instance_ssh_login import instance_login
 
 os.system("tput setaf 1")
@@ -24,7 +25,7 @@ while True:
     if choice == 1:
         aws_login()
     if choice == 2:
-        pass
+        aws_services()
         # instance_login()
     if choice == 3:
         exit()
