@@ -2,6 +2,7 @@ import os
 from services.ec2.key_pair import key_pair
 from services.ec2.instance_ssh_login import instance_login
 from services.ec2.instance_details import instance_details
+from services.ec2.instance_services import instance_services
 
 def ec2_services():
     while True:
@@ -27,6 +28,6 @@ def ec2_services():
         if choice == 3:
             instance_details()
         if choice == 4:
-            pass
+            instance_services()
         if choice == 5:
             exit()

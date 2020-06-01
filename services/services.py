@@ -1,5 +1,6 @@
 import os
 from services.ec2.services_ec2 import ec2_services
+from services.IAM.iam_services import iam_services
 
 def aws_services():
     while True:
@@ -18,5 +19,7 @@ def aws_services():
 
         if choice == 1:
             ec2_services()
+        if choice == 2:
+            iam_services()
         if choice == 3:
             exit()

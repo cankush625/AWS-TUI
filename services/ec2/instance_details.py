@@ -15,7 +15,7 @@ def instance_details():
         os.system("tput setaf 7")
 
         # Taking user choice to run the service
-        choice = int(input("Enter your choice(EC2 service number): "))
+        choice = int(input("Enter your choice: "))
 
         if choice == 1:
             get_instance_details()
