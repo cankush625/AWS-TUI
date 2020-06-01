@@ -8,24 +8,27 @@ print("\t\t\t\tWelcome to the AWS-TUI interface!")
 os.system("tput setaf 7")
 print("\t\t\t--------------------------------------------")
 
-while True:
-    os.system("tput setaf 4")
-    print('''
-    
-        Press
-            1. Login to the AWS Account
-            2. AWS Services
-            3. Exit
-            ''')
-    os.system("tput setaf 7")
+def aws_run():
+    while True:
+        os.system("tput setaf 4")
+        print('''
+        
+            Press
+                1. Login to the AWS Account
+                2. AWS Services
+                3. Exit
+                ''')
+        os.system("tput setaf 7")
 
-    # Taking user choice to run the service
-    choice = int(input("Enter your choice(number): "))
+        # Taking user choice to run the service
+        choice = int(input("Enter your choice(number): "))
 
-    if choice == 1:
-        aws_login()
-    if choice == 2:
-        aws_services()
-        # instance_login()
-    if choice == 3:
-        exit()
+        if choice == 1:
+            aws_login()
+        if choice == 2:
+            aws_services()
+            # instance_login()
+        if choice == 3:
+            exit()
+
+aws_run()
