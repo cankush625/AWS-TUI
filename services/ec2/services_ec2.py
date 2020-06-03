@@ -3,6 +3,7 @@ from services.ec2.key_pair import key_pair
 from services.ec2.instance_ssh_login import instance_login
 from services.ec2.instance_details import instance_details
 from services.ec2.instance_services import instance_services
+from services.ec2.ebs_services import ebs_services
 
 def ec2_services():
     while True:
@@ -14,7 +15,8 @@ def ec2_services():
                 2. Instance SSH Login
                 3. Instance Details
                 4. Instance Services
-                5. Exit
+                5. EBS(Elastic Block Storage)
+                6. Exit
                 ''')
         os.system("tput setaf 7")
 
@@ -30,4 +32,6 @@ def ec2_services():
         if choice == 4:
             instance_services()
         if choice == 5:
+            ebs_services()
+        if choice == 6:
             exit()
