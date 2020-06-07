@@ -9,8 +9,8 @@ def cloudfront_services():
                 1. Create Distribution
                 2. List Distributions
                 3. Get Distribution
-                4. Get Invalidation
-                5. List Invalidations
+                4. List Invalidations
+                5. Get Invalidation
                 6. Update Distribution
                 7. Delete Distribution
                 8. Exit
@@ -27,9 +27,9 @@ def cloudfront_services():
         if choice == 3:
             getDistribution()
         if choice == 4:
-            getInvalidation()
-        if choice == 5:
             listInvalidations()
+        if choice == 5:
+            getInvalidation()
         if choice == 6:
             updateDistribution()
         if choice == 7:
@@ -39,7 +39,9 @@ def cloudfront_services():
 
 # Creating new CloudFront distribution
 def createDistribution():
-    pass
+    bucketName = input("Enter the S3 bucket name: ")
+    defaultRootObject = input("Enter the name of the default root object(along with extension): ")
+    os.system("aws cloudfront create-distribution --origin-domain-name {0}.s3.amazonaws.com --default-root-object {1}".format(bucketName, defaultRootObject))
 
 # Displaying distributions
 def listDistributions():
