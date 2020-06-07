@@ -67,7 +67,7 @@ def listInvalidations():
 def updateRootObject():
     distributionID = input("Enter the distribution id(You will get it from List Distributions option): ")
     defaultRootObject = input("Enter the name of the default root object(along with extension): ")
-    os.system("aws cloudfront update-distribution --id {0} -default-root-object {1}".format(distributionID, defaultRootObject))
+    os.system("aws cloudfront update-distribution --id {0} --default-root-object {1}".format(distributionID, defaultRootObject))
 
 # Deleting distribution
 def deleteDistribution():
