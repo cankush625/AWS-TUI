@@ -11,7 +11,7 @@ def cloudfront_services():
                 3. Get Distribution
                 4. List Invalidations
                 5. Get Invalidation
-                6. Update Distribution
+                6. Update Root Object
                 7. Delete Distribution
                 8. Exit
                 ''')
@@ -31,7 +31,7 @@ def cloudfront_services():
         if choice == 5:
             getInvalidation()
         if choice == 6:
-            updateDistribution()
+            updateRootObject()
         if choice == 7:
             deleteDistribution()
         if choice == 8:
@@ -64,8 +64,10 @@ def listInvalidations():
     os.system("aws cloudfront list-invalidations --distribution-id {0}".format(distributionID))
 
 # Updating distribution
-def updateDistribution():
-    pass
+def updateRootObject():
+    distributionID = input("Enter the distribution id(You will get it from List Distributions option): ")
+    defaultRootObject = input("Enter the name of the default root object(along with extension): ")
+    os.system("aws cloudfront update-distribution --id {0} -default-root-object {1}".format(distributionID, defaultRootObject))
 
 # Deleting distribution
 def deleteDistribution():
