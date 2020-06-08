@@ -11,7 +11,11 @@ def ebs_services():
                 3. Delete Volume
                 4. Attach Volume to Instance
                 5. Detach Volume
-                6. Exit
+                6. Create Snapshot
+                7. Get Details of Snapshot
+                8. Copy Snapshot
+                9. Delete Snapshot
+                10. Exit
                 ''')
         os.system("tput setaf 7")
 
@@ -29,6 +33,14 @@ def ebs_services():
         if choice == 5:
             detachVolume()
         if choice == 6:
+            createSnapshot()
+        if choice == 7:
+            describeSnapshots()
+        if choice == 8:
+            copySnapshotFromOneRegionToAnother()
+        if choice == 9:
+            deleteSnapshot()
+        if choice == 10:
             exit()
 
 # Create a new volume
@@ -61,3 +73,32 @@ def attachVolume():
 def detachVolume():
     volumeID = input("Enter the volume ID which you want to attach: ")
     os.system("aws ec2 detach-volume --volume-id {0}".format(volumeID))
+
+# Methods to work with Snapshots
+
+# Create Snapshot from EBS Volume
+def createSnapshot():
+    volumeID = input("Enter the volume ID: ")
+    description = input("Enter the description: ")
+    keyName = input("Enter the tag name: ")
+    value = input("Enter the tag value: ")
+    command = "aws ec2 create-snapshot --volume-id " + volumeID + " --description " + description + " --tag-specifications ResourceType=snapshot,Tags=[{Key=" + keyName + ",Value=" + value + "}]"
+    os.system(command)
+
+# Get details of the snapshots
+def describeSnapshots():
+    snapshotID = input("Enter the snapshot ID: ")
+    os.system("aws ec2 describe-snapshots --snapshot-ids {0}".format(snapshotID))
+
+# Delete the snapshot
+def deleteSnapshot():
+    snapshotID = input("Enter the snapshot ID: ")
+    os.system("aws ec2 delete-snapshot --snapshot-id {0}".format(snapshotID))
+
+# Copy snapshot from one region to the another
+def copySnapshotFromOneRegionToAnother():
+    destRegion = input("Enter the destination region: ")
+    sourceRegion = input("Enter the source region: ")
+    sourceSnapshotID = input("Enter the source snapshot ID: ")
+    description = input("Enter the description: ")
+    os.system("aws ec2 copy-snapshot --region {0} --source-region {1} --source-snapshot-id {2} --description {3}".format(destRegion, sourceRegion, sourceSnapshotID, description))
