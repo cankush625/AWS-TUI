@@ -7,7 +7,7 @@ def efs_services():
         
             Press
                 1. Create EFS Storage
-                2. List Storages
+                2. Describe EFS file systems
                 3. Get Storage
                 4. List Invalidations
                 5. Get Invalidation
@@ -22,6 +22,8 @@ def efs_services():
 
         if choice == 1:
             createEFSStorage()
+        if choice == 2:
+            describeEFSFileSystems()
         if choice == 8:
             exit()
 
@@ -39,3 +41,26 @@ def createEFSStorage():
             os.system("aws efs create-file-system --creation-token {0} --performance-mode {1} --throughput-mode {2} --tags Key=Name,Value='{3}'".format(creationToken, performanceMode, throughputMode, tagName))
     except FileSystemAlreadyExists:
         print("File System already exist")
+
+def describeEFSFileSystems():
+    os.system("tput setaf 4")
+    print('''
+    
+        Press
+            1. Describe EFS file systems
+            2. Describe EFS by creationToken
+            3. Describe EFS by filesystem id
+            4. Exit
+            ''')
+    os.system("tput setaf 7")
+    choice1 = int(input("Enter your choice: "))
+    if choice1 == 1:
+        os.system("aws efs describe-file-systems")
+    if choice1 == 2:
+        token = input("Enter the creation token: ")
+        os.system("aws efs describe-file-systems --creation-token {0}".format(token))
+    if choice1 == 3:
+        id = input("Enter the file system id: ")
+        os.system("aws efs describe-file-systems --file-system-id {0}".format(id))
+    if choice1 == 4:
+        exit()
