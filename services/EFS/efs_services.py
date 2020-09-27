@@ -12,7 +12,7 @@ def efs_services():
                 4. List tags for resource
                 5. Create mount target
                 6. Describe mount targets
-                7. Delete Storage
+                7. Delete mount target
                 8. Exit
                 ''')
         os.system("tput setaf 7")
@@ -32,6 +32,8 @@ def efs_services():
             createMountTarget()
         if choice == 6:
             describeMountTargets()
+        if choice == 7:
+            deleteMountTarget()
         if choice == 8:
             exit()
 
@@ -91,3 +93,7 @@ def createMountTarget():
 def describeMountTargets():
     resourceId = input("Enter the EFS file system ID: ")
     os.system("aws efs describe-mount-targets --file-system-id {0}".format(resourceId))
+
+def deleteMountTarget():
+    mountTargetId = input("Enter the mount target ID: ")
+    os.system("aws efs delete-mount-target --mount-target-id {0}".format(mountTargetId))
