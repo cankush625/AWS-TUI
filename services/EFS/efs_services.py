@@ -10,8 +10,8 @@ def efs_services():
                 2. Describe EFS file systems
                 3. Tag EFS file system
                 4. List tags for resource
-                5. Get Invalidation
-                6. Update Root Object
+                5. Create mount target
+                6. Describe mount targets
                 7. Delete Storage
                 8. Exit
                 ''')
@@ -28,6 +28,10 @@ def efs_services():
             tagResource()
         if choice == 4:
             listTags()
+        if choice == 5:
+            createMountTarget()
+        if choice == 6:
+            describeMountTargets()
         if choice == 8:
             exit()
 
@@ -64,7 +68,7 @@ def describeEFSFileSystems():
         token = input("Enter the creation token: ")
         os.system("aws efs describe-file-systems --creation-token {0}".format(token))
     if choice1 == 3:
-        id = input("Enter the file system id: ")
+        id = input("Enter the file system ID: ")
         os.system("aws efs describe-file-systems --file-system-id {0}".format(id))
     if choice1 == 4:
         exit()
@@ -76,5 +80,14 @@ def tagResource():
     os.system("aws efs tag-resource --resource-id {0} --tag Key={1},Value={2}".format(efsId, tagKey, tagValue))
 
 def listTags():
-    resourceId = input("Enter the EFS file system id: ")
+    resourceId = input("Enter the EFS file system ID: ")
     os.system("aws efs list-tags-for-resource --resource-id {0}".format(resourceId))
+
+def createMountTarget():
+    resourceId = input("Enter the EFS file system ID: ")
+    subnetId = input("Enter the subnet ID: ")
+    os.system("aws efs create-mount-target --file-system-id {0} --subnet-id {1}".format(resourceId, subnetId))
+
+def describeMountTargets():
+    resourceId = input("Enter the EFS file system ID: ")
+    os.system("aws efs describe-mount-targets --file-system-id {0}".format(resourceId))
