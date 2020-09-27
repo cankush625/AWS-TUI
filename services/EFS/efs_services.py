@@ -8,7 +8,7 @@ def efs_services():
             Press
                 1. Create EFS Storage
                 2. Describe EFS file systems
-                3. Get Storage
+                3. Tag EFS file system
                 4. List Invalidations
                 5. Get Invalidation
                 6. Update Root Object
@@ -24,6 +24,8 @@ def efs_services():
             createEFSStorage()
         if choice == 2:
             describeEFSFileSystems()
+        if choice == 3:
+            tagResource()
         if choice == 8:
             exit()
 
@@ -64,3 +66,9 @@ def describeEFSFileSystems():
         os.system("aws efs describe-file-systems --file-system-id {0}".format(id))
     if choice1 == 4:
         exit()
+
+def tagResource():
+    efsId = input("Enter the EFS file system ID: ")
+    tagKey = input("Enter the tag key: ")
+    tagValue = input("Enter the tag value: ")
+    os.system("aws efs tag-resource --resource-id {0} --tag Key={1},Value={2}".format(efsId, tagKey, tagValue))
