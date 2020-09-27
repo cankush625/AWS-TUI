@@ -33,7 +33,7 @@ def createEFSStorage():
     performanceMode = input("Enter the performance mode: ")
     throughputMode = input("Enter the throughtput mode: ")
     tagName = input("Enter the tag name: ")
-    isEncrypted = input("Enter True/Flase: ")
+    isEncrypted = input("Enter True/False: ")
     try:
         if isEncrypted:
             os.system("aws efs create-file-system --creation-token {0} --performance-mode {1} --throughput-mode {2} --encrypted --tags Key=Name,Value='{3}'".format(creationToken, performanceMode, throughputMode, tagName))
