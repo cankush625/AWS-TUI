@@ -4,6 +4,7 @@ from services.IAM.iam_services import iam_services
 from services.CloudTrail.cloudtrail_services import cloudtrail_services
 from services.S3.s3_services import s3_services
 from services.CloudFront.cloudfront_services import cloudfront_services
+from services.EFS.efs_services import efs_services
 
 def aws_services():
     while True:
@@ -14,9 +15,10 @@ def aws_services():
                 1. EC2
                 2. IAM
                 3. S3
-                4. CloudTrail
-                5. CloudFront
-                6. Exit
+                4. EFS
+                5. CloudTrail
+                6. CloudFront
+                7. Exit
                 ''')
         os.system("tput setaf 7")
 
@@ -30,8 +32,10 @@ def aws_services():
         if choice == 3:
             s3_services()
         if choice == 4:
-            cloudtrail_services()
+            efs_services()
         if choice == 5:
-            cloudfront_services()
+            cloudtrail_services()
         if choice == 6:
+            cloudfront_services()
+        if choice == 7:
             exit()
